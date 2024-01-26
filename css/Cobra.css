@@ -29,14 +29,14 @@ canvas{
 
 @media(max-width:470px){
     canvas{
-       width: 360px;
+       width: 380px;
     }
 
 }
 
 @media(max-width: 360px){
     canvas{
-        width: 300px;
+        width: 310px;
      }
  
 }

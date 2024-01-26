@@ -119,6 +119,9 @@ const chackEat = () => {
         incrementScore()
         snake.push(head)
         audio.play()
+        if (audio.paused) {
+            audio.play();
+        }
 
         let x = randomPosition()
         let y = randomPosition()
@@ -173,18 +176,13 @@ const gameLoop = () => {
 
     loopId = setTimeout(() => {
         gameLoop()
-    }, 301)
+    }, 170)
 }
 
 gameLoop()
 
 let touchStartX = 0;
 let touchStartY = 0;
-
-document.addEventListener("touchstart", (e) => {
-    touchStartX = e.touches[0].clientX;
-    touchStartY = e.touches[0].clientY;
-});
 
 document.addEventListener("touchend", (e) => {
     const touchEndX = e.changedTouches[0].clientX;
@@ -195,10 +193,18 @@ document.addEventListener("touchend", (e) => {
 
     if (Math.abs(deltaX) > Math.abs(deltaY)) {
         // Movimento horizontal
-        direction = deltaX > 0 ? "right" : "left";
+        if (deltaX > 0 && direction !== "left") {
+            direction = "right";
+        } else if (deltaX < 0 && direction !== "right") {
+            direction = "left";
+        }
     } else {
         // Movimento vertical
-        direction = deltaY > 0 ? "down" : "up";
+        if (deltaY > 0 && direction !== "up") {
+            direction = "down";
+        } else if (deltaY < 0 && direction !== "down") {
+            direction = "up";
+        }
     }
 })
 

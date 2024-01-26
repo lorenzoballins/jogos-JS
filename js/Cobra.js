@@ -119,9 +119,7 @@ const chackEat = () => {
         incrementScore()
         snake.push(head)
         audio.play()
-        if (audio.paused) {
-            audio.play();
-        }
+        
 
         let x = randomPosition()
         let y = randomPosition()
@@ -206,7 +204,7 @@ document.addEventListener("touchend", (e) => {
             direction = "up";
         }
     }
-})
+});
 
 document.addEventListener("keydown", ({ key }) => {
     if (key == "ArrowRight" && direction != "left") {

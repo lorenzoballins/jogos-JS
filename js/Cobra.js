@@ -179,9 +179,6 @@ const gameLoop = () => {
 
 gameLoop()
 
-let touchStartX = 0;
-let touchStartY = 0;
-
 document.addEventListener("touchend", (e) => {
     const touchEndX = e.changedTouches[0].clientX;
     const touchEndY = e.changedTouches[0].clientY;
@@ -191,17 +188,17 @@ document.addEventListener("touchend", (e) => {
 
     if (Math.abs(deltaX) > Math.abs(deltaY)) {
         // Movimento horizontal
-        if (deltaX > 0 && direction !== "left") {
-            direction = "right";
-        } else if (deltaX < 0 && direction !== "right") {
-            direction = "left";
+        if (deltaX > 0) {
+            direction = direction !== "left" ? "right" : direction;
+        } else if (deltaX < 0) {
+            direction = direction !== "right" ? "left" : direction;
         }
     } else {
         // Movimento vertical
-        if (deltaY > 0 && direction !== "up") {
-            direction = "down";
-        } else if (deltaY < 0 && direction !== "down") {
-            direction = "up";
+        if (deltaY > 0) {
+            direction = direction !== "up" ? "down" : direction;
+        } else if (deltaY < 0) {
+            direction = direction !== "down" ? "up" : direction;
         }
     }
 });

@@ -1,4 +1,4 @@
-const canvas = document.querySelector("canvas")
+document.querySelector("canvas")
 const ctx = canvas.getContext("2d")
 
 const score = document.querySelector(".score--value")
@@ -6,17 +6,13 @@ const finalScore = document.querySelector(".final-score > span")
 const menu = document.querySelector(".menu-screen")
 const buttonPlay = document.querySelector(".btn-play")
 
-// ...
-
-const audio = new Audio("../assets/audio.mp3");
-
-
+const audio = new Audio("../assets/audio.mp3")
 
 const size = 30
 
-let snake = [{ x: 270, y: 240 }, { x: 300, y: 240 } // Adicionando outro quadrado com x como 300 ,
-    , { x: 330, y: 240 }
-]
+let snake= [{ x: 270, y: 240 },{ x: 300, y: 240 } // Adicionando outro quadrado com x como 300 ,
+, { x: 330, y: 240 }
+] 
 
 
 
@@ -122,8 +118,8 @@ const chackEat = () => {
     if (head.x == food.x && head.y == food.y) {
         incrementScore()
         snake.push(head)
-
-        audio.play();
+        audio.play()
+        
 
         let x = randomPosition()
         let y = randomPosition()
@@ -241,7 +237,7 @@ document.addEventListener("touchend", (e) => {
 
 document.addEventListener("keydown", ({ key }) => {
     if (key == "ArrowRight" && direction != "left") {
-
+        
         direction = "right"
     }
 
@@ -256,20 +252,20 @@ document.addEventListener("keydown", ({ key }) => {
     if (key == "ArrowUp" && direction != "down") {
         direction = "up"
     }
-})
+}) 
 
 buttonPlay.addEventListener("click", () => {
     score.innerText = "00"
     menu.style.display = "none"
     canvas.style.filter = "none"
-
+    
     // Gere uma nova comida aleatória
     food.x = randomPosition();
     food.y = randomPosition();
     food.color = randomColor();
 
-    snake = [{ x: 270, y: 240 }, { x: 300, y: 240 } // Adicionando outro quadrado com x como 300 ,
-        , { x: 330, y: 240 }]
+    snake= [{ x: 270, y: 240 },{ x: 300, y: 240 } // Adicionando outro quadrado com x como 300 ,
+    , { x: 330, y: 240 }]
 
     gameActive = true;
 })

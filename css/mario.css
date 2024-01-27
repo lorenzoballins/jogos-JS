@@ -55,7 +55,7 @@ body{
 
 @media(max-width:500px){
     .pipe{
-        animation: pipe-animation 0.4s infinite linear;
+        animation: pipe-animation 0.5s infinite linear;
     }
 }
 

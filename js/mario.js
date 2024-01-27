@@ -14,11 +14,10 @@ document.addEventListener('DOMContentLoaded', function () {
     let isJumping = false;
     let gameLoop;
     let isAudioPlaying = true;
-
-    
+    let isGameRunning = false; // Adicionada uma flag para verificar se o jogo está em execução.
 
     const jump = () => {
-        if (!isJumping) {
+        if (!isJumping && isGameRunning) { // Verifica se não está pulando e se o jogo está em execução.
             audio.play();
             mario.classList.add('jump');
             isJumping = true;
@@ -43,6 +42,8 @@ document.addEventListener('DOMContentLoaded', function () {
         clouds.style.animationPlayState = 'running';
         backaudio.play();
 
+        isGameRunning = true; // Define que o jogo está em execução.
+
         gameLoop = setInterval(() => {
             const pipePosition = pipe.offsetLeft;
             const marioPosition = +window.getComputedStyle(mario).bottom.replace('px', '');
@@ -65,6 +66,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 menu.style.display = "flex";
                 finalScore.innerText = score.innerText;
                 clouds.style.animationPlayState = 'paused';
+
+                isGameRunning = false; // Define que o jogo não está mais em execução.
 
                 clearInterval(gameLoop);
             }
@@ -93,6 +96,8 @@ document.addEventListener('DOMContentLoaded', function () {
             menu.style.display = "flex";
             finalScore.innerText = score.innerText;
             clouds.style.animationPlayState = 'paused';
+
+            isGameRunning = false; // Define que o jogo não está mais em execução.
 
             clearInterval(gameLoop);
         }

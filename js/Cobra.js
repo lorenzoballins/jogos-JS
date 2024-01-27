@@ -6,7 +6,7 @@ const finalScore = document.querySelector(".final-score > span");
 const menu = document.querySelector(".menu-screen");
 const buttonPlay = document.querySelector(".btn-play");
 
-const audio = new Audio("../assets/audio.mp3");
+const audio = new Audio("../assets/audio.mp3")
 
 const size = 30;
 
@@ -111,27 +111,26 @@ const drawGrid = () => {
 };
 
 const chackEat = () => {
-    const head = snake[snake.length - 1];
+    const head = snake[snake.length - 1]
 
     if (head.x == food.x && head.y == food.y) {
-        incrementScore();
-        snake.push(head);
-        audio.currentTime = 0;
-        audio.play();
+        incrementScore()
+        snake.push(head)
+        audio.play()
 
-        let x = randomPosition();
-        let y = randomPosition();
+        let x = randomPosition()
+        let y = randomPosition()
 
         while (snake.find((position) => position.x == x && position.y == y)) {
-            x = randomPosition();
-            y = randomPosition();
+            x = randomPosition()
+            y = randomPosition()
         }
 
-        food.x = x;
-        food.y = y;
-        food.color = randomColor();
+        food.x = x
+        food.y = y
+        food.color = randomColor()
     }
-};
+}
 
 const checkCollision = () => {
     const head = snake[snake.length - 1];

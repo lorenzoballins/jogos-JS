@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const finalScore = document.querySelector(".final-score > span");
     const menu = document.querySelector(".menu-screen");
     const buttonPlay = document.querySelector(".btn-play");
-
     const audio = new Audio("assets/jump-small.mp3");
     const audio1 = new Audio("assets/mariodie.mp3");
 
@@ -16,11 +15,27 @@ document.addEventListener('DOMContentLoaded', function () {
     let isAudioPlaying = true;
     let isGameRunning = false; // Adicionada uma flag para verificar se o jogo está em execução.
 
+    const incrementScore = () => {
+        score.innerText = +score.innerText + 10
+    }
+
+    pipe.addEventListener('animationiteration', incrementScore); // Adiciona um ouvinte para a iteração da animação do cano
+
     const jump = () => {
         if (!isJumping && isGameRunning) { // Verifica se não está pulando e se o jogo está em execução.
             audio.play();
             mario.classList.add('jump');
             isJumping = true;
+
+            const marioBottom = +window.getComputedStyle(mario).bottom.replace('px', '');
+            const pipeTop = 200; // Ajuste este valor para a posição vertical do topo do cano
+            const pipeBottom = pipeTop + 180; // Ajuste este valor para a posição vertical do fundo do cano
+
+            // Verifica se o Mario está entre o topo e o fundo do cano
+            if (marioBottom > pipeTop && marioBottom < pipeBottom) {
+                incrementScore();
+            }
+
 
             setTimeout(() => {
                 mario.classList.remove('jump');
@@ -41,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function () {
         score.innerText = '00';
         clouds.style.animationPlayState = 'running';
         backaudio.play();
-
+    
         isGameRunning = true; // Define que o jogo está em execução.
 
         gameLoop = setInterval(() => {
@@ -53,6 +68,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 audio.pause();
                 audio1.play();
 
+                
                 pipe.style.animation = 'none';
                 pipe.style.left = `${pipePosition}px`;
 
@@ -63,17 +79,20 @@ document.addEventListener('DOMContentLoaded', function () {
                 mario.style.width = '100px';
                 mario.style.marginLeft = '40px';
 
-                menu.style.display = "flex";
+                setTimeout(() =>{
+                    menu.style.display = "flex";
                 finalScore.innerText = score.innerText;
                 clouds.style.animationPlayState = 'paused';
 
                 isGameRunning = false; // Define que o jogo não está mais em execução.
 
                 clearInterval(gameLoop);
+                },2000)
+                
             }
         }, 10);
-    }; 
-        
+    };
+
     const checkCollision = () => {
         const pipePosition = pipe.offsetLeft;
         const marioPosition = +window.getComputedStyle(mario).bottom.replace('px', '');
@@ -83,6 +102,7 @@ document.addEventListener('DOMContentLoaded', function () {
             audio.pause();
             audio1.play();
 
+            
             pipe.style.animation = 'none';
             pipe.style.left = `${pipePosition}px`;
 
@@ -92,14 +112,16 @@ document.addEventListener('DOMContentLoaded', function () {
             mario.src = 'img-mario/game-over.png';
             mario.style.width = '100px';
             mario.style.marginLeft = '40px';
-
-            menu.style.display = "flex";
-            finalScore.innerText = score.innerText;
-            clouds.style.animationPlayState = 'paused';
-
-            isGameRunning = false; // Define que o jogo não está mais em execução.
-
-            clearInterval(gameLoop);
+            setTimeout(() =>{
+                menu.style.display = "flex";
+                finalScore.innerText = score.innerText;
+                clouds.style.animationPlayState = 'paused';
+    
+                isGameRunning = false; // Define que o jogo não está mais em execução.
+    
+                clearInterval(gameLoop);
+            },2000)
+           
         }
     };
 
@@ -111,4 +133,4 @@ document.addEventListener('DOMContentLoaded', function () {
     setInterval(checkCollision, 10);
 
     resetGame();
-});
+}); 

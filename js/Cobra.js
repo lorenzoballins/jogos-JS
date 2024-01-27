@@ -229,21 +229,27 @@ document.addEventListener("touchend", (e) => {
 })
 
 document.addEventListener("keydown", ({ key }) => {
-    if (key == "ArrowRight" && direction != "left") {
-        direction = "right"
+    key = key.toLowerCase(); // Convertendo para minúsculo
+    
+
+    if ((key == "arrowright" || key == "d") && direction !== "left") {
+        direction = "right";
     }
 
-    if (key == "ArrowLeft" && direction != "right") {
-        direction = "left"
+    if ((key == "arrowleft" || key == "a") && direction !== "right") {
+        direction = "left";
     }
 
-    if (key == "ArrowDown" && direction != "up") {
-        direction = "down"
+    if ((key == "arrowdown" || key == "s") && direction !== "up") {
+        direction = "down";
     }
 
-    if (key == "ArrowUp" && direction != "down") {
-        direction = "up"
+    if ((key == "arrowup" || key == "w") && direction !== "down") {
+        direction = "up";
     }
+
+    
+    
 })
 
 buttonPlay.addEventListener("click", () => {

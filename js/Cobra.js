@@ -203,24 +203,37 @@ document.addEventListener("touchend", (e) => {
     }
 });
 
-document.addEventListener("keydown", ({ key }) => {
-    if (key == "ArrowRight" && direction != "left") {
-        
-        direction = "right"
-    }
+let touchStartX = 0;
+let touchStartY = 0;
 
-    if (key == "ArrowLeft" && direction != "right") {
-        direction = "left"
-    }
+document.addEventListener("touchstart", (e) => {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+});
 
-    if (key == "ArrowDown" && direction != "up") {
-        direction = "down"
-    }
+document.addEventListener("touchend", (e) => {
+    const touchEndX = e.changedTouches[0].clientX;
+    const touchEndY = e.changedTouches[0].clientY;
 
-    if (key == "ArrowUp" && direction != "down") {
-        direction = "up"
+    const deltaX = touchEndX - touchStartX;
+    const deltaY = touchEndY - touchStartY;
+
+    if (Math.abs(deltaX) > Math.abs(deltaY)) {
+        // Movimento horizontal
+        if (deltaX > 0 && direction !== "left") {
+            direction = "right";
+        } else if (deltaX < 0 && direction !== "right") {
+            direction = "left";
+        }
+    } else {
+        // Movimento vertical
+        if (deltaY > 0 && direction !== "up") {
+            direction = "down";
+        } else if (deltaY < 0 && direction !== "down") {
+            direction = "up";
+        }
     }
-})
+});
 
 buttonPlay.addEventListener("click", () => {
     score.innerText = "00"

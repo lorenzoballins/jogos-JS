@@ -15,26 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let gameLoop;
     let isAudioPlaying = true;
 
-    const toggleAudio = () => {
-        if (isAudioPlaying) {
-            backaudio.pause();
-        } else {
-            backaudio.play();
-        }
-        isAudioPlaying = !isAudioPlaying;
-    };
-
-    backaudio.addEventListener('ended', () => {
-        // Reinicia a reprodução quando a música termina
-        backaudio.play();
-    });
-
-    document.addEventListener('keydown', (event) => {
-        // Se a tecla 'M' for pressionada, toggle o áudio
-        if (event.key === 'M' || event.key === 'm') {
-            toggleAudio();
-        }
-    });
+    
 
     const jump = () => {
         if (!isJumping) {
@@ -51,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const resetGame = () => {
         menu.style.display = "none";
-        pipe.style.animation = 'pipe-animation 1.5s infinite linear';
+        pipe.style.animation = '';
         pipe.style.left = '';
         mario.style.animation = '';
         mario.style.bottom = '0';

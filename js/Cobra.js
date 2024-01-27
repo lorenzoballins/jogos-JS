@@ -268,4 +268,4 @@ buttonPlay.addEventListener("click", () => {
     , { x: 330, y: 240 }]
 
     gameActive = true;
-})
+})  

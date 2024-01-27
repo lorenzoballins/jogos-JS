@@ -10,12 +10,6 @@ const buttonPlay = document.querySelector(".btn-play")
 
 const audio = new Audio("../assets/audio.mp3");
 
-// Tente desbloquear o áudio automaticamente no início do jogo
-audio.play().then(() => {
-    audio.pause();
-}).catch((error) => {
-    console.error("Erro ao desbloquear áudio:", error);
-});
 
 
 const size = 30
@@ -129,7 +123,6 @@ const chackEat = () => {
         incrementScore()
         snake.push(head)
 
-        audio.currentTime = 0;
         audio.play();
 
         let x = randomPosition()

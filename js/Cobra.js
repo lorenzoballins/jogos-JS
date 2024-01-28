@@ -198,6 +198,10 @@ document.addEventListener("touchend", (e) => {
     }
 });
 
+document.addEventListener("touchmove", (e) => {
+    e.preventDefault(); // Impede o comportamento padrão de rolagem
+});
+
 let touchStartX = 0;
 let touchStartY = 0;
 

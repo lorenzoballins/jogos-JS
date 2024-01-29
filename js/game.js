@@ -21,25 +21,25 @@ const characters = [
 
 ]
 
-const checkEndGame = (()=>{
+const checkEndGame = (() => {
     const disabledCards = document.querySelectorAll('.disabled-card')
 
-    if(disabledCards.length === 20){
-    clearInterval(this.loop)
-    setTimeout(() => {
-        alert(`Parabéns, ${spanPlayer.innerHTML}! Seu tempo foi: ${timer.innerHTML}`);
-        menu.style.display = 'flex';
-        gameActive = false;
-    }, 1000);
+    if (disabledCards.length === 20) {
+        clearInterval(this.loop)
+        setTimeout(() => {
+            alert(`Parabéns, ${spanPlayer.innerHTML}! Seu tempo foi: ${timer.innerHTML}`);
+            menu.style.display = 'flex';
+            gameActive = false;
+        }, 1000);
 
     }
 })
-const checkCards = (() =>{
-   
+const checkCards = (() => {
+
     const firstCharacter = firstCard.getAttribute('data-characters');
     const secondCharacter = secondCard.getAttribute('data-characters');
 
-    if(firstCharacter === secondCharacter){
+    if (firstCharacter === secondCharacter) {
         firstCard.firstChild.classList.add('disabled-card')
         secondCard.firstChild.classList.add('disabled-card')
 
@@ -47,57 +47,57 @@ const checkCards = (() =>{
         secondCard = ''
 
         checkEndGame();
-    }else{
-        setTimeout(() =>{
+    } else {
+        setTimeout(() => {
             firstCard.classList.remove('reveal-card')
-        secondCard.classList.remove('reveal-card')
+            secondCard.classList.remove('reveal-card')
 
-        firstCard = ''
-        secondCard = ''
+            firstCard = ''
+            secondCard = ''
 
-        },400)
-        
-    
-        
+        }, 400)
+
+
+
     }
 })
 
-const revealCard = ({target}) =>{
-    if(target.parentNode.className.includes('reveal-card')){
+const revealCard = ({ target }) => {
+    if (target.parentNode.className.includes('reveal-card')) {
         return
     }
 
-    if(firstCard == ''){
+    if (firstCard == '') {
         target.parentNode.classList.add('reveal-card')
-        firstCard= target.parentNode
+        firstCard = target.parentNode
 
-    } else if(secondCard == ''){
-     target.parentNode.classList.add('reveal-card')
-        secondCard= target.parentNode
+    } else if (secondCard == '') {
+        target.parentNode.classList.add('reveal-card')
+        secondCard = target.parentNode
 
-       
+
 
 
         checkCards()
     }
 
 
-    
+
 }
 
 
-const createElement = (tag,className) =>{
+const createElement = (tag, className) => {
     const element = document.createElement(tag);
 
     element.className = className;
     return element;
 }
 
-const createCard = (character) =>{
+const createCard = (character) => {
 
-    
-    const card = createElement('div','card')
-    const front = createElement('div','face front')
+
+    const card = createElement('div', 'card')
+    const front = createElement('div', 'face front')
     const back = createElement('div', 'face back')
 
     front.style.backgroundImage = `url('../img-memory/${character}.png')`
@@ -125,37 +125,46 @@ const startTimer = () => {
         timer.innerHTML = currentTime + 1;
     }, 1000);
 };
-const loadGame = () =>{
+const loadGame = () => {
 
     const duplicateCharacters = [...characters, ...characters]
 
     const shuffledArrey = shuffleArray(duplicateCharacters);
-    duplicateCharacters.forEach((character)=>{
+    duplicateCharacters.forEach((character) => {
         const card = createCard(character);
         grid.appendChild(card)
     })
 }
 
-window.onload = () =>{
+window.onload = () => {
     const playerName = localStorage.getItem('player')
-    
+
     spanPlayer.innerHTML = playerName
     startTimer()
     loadGame()
 }
 
 
-
+const resetTimer = () => {
+    this.loop = setInterval(() => {
+        const currentTime = +timer.innerHTML;
+        timer.innerHTML = currentTime + 1;
+    }, 1000);
+    timer.innerHTML = '0';     // Reinicia o tempo para zero
+};
 
 
 const resetGame = () => {
     menu.style.display = 'none';
 
-    // Remover a classe 'disabled-card' das cartas
-    const cards = document.querySelectorAll('.disabled-card');
+    // Remover todas as cartas do grid
+    grid.innerHTML = '';
+
+    // Limpar a classe 'disabled-card' das cartas
+    const cards = document.querySelectorAll('.card');
     cards.forEach(card => card.classList.remove('disabled-card'));
 
-    // Remover a classe 'reveal-card' das cartas viradas
+    // Limpar a classe 'reveal-card' das cartas viradas
     const revealedCards = document.querySelectorAll('.reveal-card');
     revealedCards.forEach(card => card.classList.remove('reveal-card'));
 
@@ -163,8 +172,10 @@ const resetGame = () => {
     firstCard = '';
     secondCard = '';
 
+    resetTimer();  // Chama a função para reiniciar o temporizador
+
     // Em seguida, carregar um novo jogo
     loadGame();
 };
 
-buttonPlay.addEventListener("click", resetGame)
+buttonPlay.addEventListener('click', resetGame);

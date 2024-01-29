@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="css/reset.css">
+
+    <link rel="stylesheet" href="css/login-mario.css">
+
+   
+
+    <title>Memory-game</title>
+</head>
+<body>
+
+   
+
+        <div class="login-header">
+
+            <img src="img-mario/login-mario.png" alt="brain icon">
+
+            <h1>Mario-Game</h1>
+
+            <p>Pule os canos!a todo custo e some o maximo de pontos</p>
+
+            <button type="subimit" class="login-button" >Play</button>
+            
+        </div>  
+        <!--código que manda o player paga o game-->
+        <script>
+            const button = document.querySelector('.login-button');
+        
+            const handleClick = () => {
+                // Redirecionar para 'pages/Mário.html'
+                window.location.href = 'pages/Mário.html';
+            };
+        
+            button.addEventListener('click', handleClick);
+        </script>
+            
+   
+</body>
+</html>

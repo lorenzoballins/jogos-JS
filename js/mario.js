@@ -7,8 +7,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const finalScore = document.querySelector(".final-score > span");
     const menu = document.querySelector(".menu-screen");
     const buttonPlay = document.querySelector(".btn-play");
-    const audio = new Audio("assets/jump-small.mp3");
-    const audio1 = new Audio("assets/mariodie.mp3");
+    const audio = new Audio("../assets/jump-small.mp3");
+    const audio1 = new Audio("../assets/mariodie.mp3");
 
     let isJumping = false;
     let gameLoop;
@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function () {
         pipe.style.left = '';
         mario.style.animation = '';
         mario.style.bottom = '0';
-        mario.src = 'img-mario/mario.gif';
+        mario.src = '../img-mario/mario.gif';
         mario.style.width = '180px';
         mario.style.marginLeft = '0';
         score.innerText = '00';
@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 mario.style.animation = 'none';
                 mario.style.bottom = `${marioPosition}px`;
 
-                mario.src = 'img-mario/game-over.png';
+                mario.src = '../img-mario/game-over.png';
                 mario.style.width = '100px';
                 mario.style.marginLeft = '40px';
 
@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', function () {
             mario.style.animation = 'none';
             mario.style.bottom = `${marioPosition + 5}px`;
 
-            mario.src = 'img-mario/game-over.png';
+            mario.src = '../img-mario/game-over.png';
             mario.style.width = '100px';
             mario.style.marginLeft = '40px';
             setTimeout(() =>{

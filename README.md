@@ -2,7 +2,7 @@
 Projeto Casual de Jogos em JavaScript
 
 Este é um projeto que contém três jogos simples em JavaScript: Snake Game, Mario Game e Memory Game.além da página principal que vai interligar, Cada jogo possui suas próprias regras e 
-mecânicas.Sinta-se à vontade para explorar e jogar esses jogos!
+mecânicas.,todos são responsivos seja funcionando em touchscreen e se adaptando a telas menores.Sinta-se à vontade para explorar e jogar esses jogos!
 
 
 Licença

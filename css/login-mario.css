@@ -17,7 +17,7 @@ body{
     font-size: 3.5em;
 }
 .login-header img{
-    width: 300px;
+    width: 250px;
    
 }
 
@@ -51,7 +51,8 @@ body{
 
     
     .login-header img{
-        width: 250px;
+        width: 200px;
+        margin-top: 140px;
     }
 }
 
@@ -59,5 +60,10 @@ body{
     
 .login-header{
     font-size: 2.6em;
+}
+
+.login-header img{
+    width: 200px;
+    margin-top: 50px;
 }
 }

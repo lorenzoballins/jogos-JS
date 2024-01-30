@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://jonyjogos-javascript.netlify.app/</loc>
+  </url>
+  <url>
+    <loc>https://jonyjogos-javascript.netlify.app/cobra</loc>
+  </url>
+  <url>
+    <loc>
+    https://jonyjogos-javascript.netlify.app/login-mario</loc>
+  </url>
+
+  <url>
+    <loc>
+   https://jonyjogos-javascript.netlify.app/memory</loc>
+  </url>
+  
+  <!-- Adicione mais entradas para outras páginas do seu site -->
+</urlset>
